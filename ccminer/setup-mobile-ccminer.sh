@@ -75,3 +75,4 @@ EOF
 chmod +x start.sh
 
 echo "All done"
+echo "Start mining with ./start.sh"
