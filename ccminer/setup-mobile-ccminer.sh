@@ -13,6 +13,7 @@ CCMINER_URL="https://github.com/Oink70/ccminer-verus/releases/download/v3.8.3a-C
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install ca-certificates libcurl4-openssl-dev libjansson-dev libomp-dev screen -y
+sudo hostname $DEVICE_NAME
 
 echo "Installing libssl1.1"
 
