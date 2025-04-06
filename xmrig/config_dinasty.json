@@ -1,0 +1,17 @@
+{
+    "autosave": true,
+    "cpu": true,
+    "opencl": false,
+    "cuda": false,
+    "pools": [
+        {
+            "url": "pool.dinastycoin.com:3333",
+            "user": "NYz4cmBjH9zKDfu3Zq344FR44rJ5sxPZgZYZzp4XgT9h9C7pk7qQCzzZKUZav9An65VtRJJtXkZPt9agzy9weR3o1uGFJnTgBc",
+            "pass": "NYz4cmBjH9zKDfu3Zq344FR44rJ5sxPZgZYZzp4XgT9h9C7pk7qQCzzZKUZav9An65VtRJJtXkZPt9agzy9weR3o1uGFJnTgBc@{{WORKER_NAME}}",
+            "keepalive": true,
+            "nicehash": false,
+            "variant": "trtl",
+            "algo": "randomx"
+        }
+    ]
+}

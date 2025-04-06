@@ -1,0 +1,18 @@
+{
+    "autosave": true,
+    "cpu": true,
+    "opencl": false,
+    "cuda": false,
+    "pools": [
+        {
+            "url": "randomx.rplant.xyz:17128",
+            "user": "VU4KPBVFz9tdu9s4RXnuNqhfSrwJxiKFSCaMP5kGE4J8Udff1UWkbHP4rz8qvzwZJ654pTtNCM4x8aLx6KvfVUEq154WEv1hU.{{WORKER_NAME}}",
+            "pass": "xxx",
+            "keepalive": true,
+            "nicehash": false,
+            "variant": "trtl",
+            "algo": "randomx",
+            "tls": true
+        }
+    ]
+}

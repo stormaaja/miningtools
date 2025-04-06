@@ -1,0 +1,18 @@
+{
+    "autosave": true,
+    "cpu": true,
+    "opencl": false,
+    "cuda": false,
+    "pools": [
+        {
+            "coin": null,
+            "algo": "rx/keva",
+            "url": "pool.yadacoin.io:3333",
+            "user": "17KaXCDReLZTTDRL8QyCJPXap3ffu6G2TP.{{WORKER_NAME}}",
+            "pass": "x",
+            "tls": false,
+            "keepalive": true,
+            "nicehash": false
+        }
+    ]
+}
