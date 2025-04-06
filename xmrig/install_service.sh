@@ -8,22 +8,50 @@ if [ -n "$1" ]; then
   WORKER_NAME=$1
 fi
 
-ARCH=$(arc)
-OS_CODE=$(lsb_release -c | awk '{print $2}')
+LINUX_SYSTEM_CODE=$(lsb_release -c | awk '{print $2}')
+if [ -n "$2" ]; then
+  LINUX_SYSTEM_CODE=$2
+fi
 
-XMRIG_PACKAGE="xmrig-$VERSION-$OS_CODE-$ARCH.tar.gz"
+function download_xmrig() {
+    ARCH="x64"
 
-echo "Downloading Xmrig $VERSION for $OS_CODE ($ARCH)"
-curl -L -O https://github.com/xmrig/xmrig/releases/download/v$VERSION/$XMRIG_PACKAGE
-tar -xzf $XMRIG_PACKAGE
-rm $XMRIG_PACKAGE
-mv $XMRIG_PACKAGE/* .
-rmdir $XMRIG_PACKAGE
+    OS_CODE=$1
+
+    XMRIG_BASE_FILE="xmrig-$VERSION-$OS_CODE-$ARCH"
+    XMRIG_PACKAGE="$XMRIG_BASE_FILE.tar.gz"
+
+    echo "Downloading Xmrig $VERSION for $OS_CODE ($ARCH) from https://github.com/xmrig/xmrig/releases/download/v$VERSION/$XMRIG_PACKAGE"
+    curl -L -O https://github.com/xmrig/xmrig/releases/download/v$VERSION/$XMRIG_PACKAGE
+    echo "Extracting file"
+    tar -xzf $XMRIG_PACKAGE
+    FOLDER_NAME="xmrig-$VERSION"
+    if [ ! -d "$FOLDER_NAME" ]; then
+        echo "Error: Extracting $XMRIG_PACKAGE failed."
+        rm $XMRIG_PACKAGE
+        return 1
+    fi
+    rm $XMRIG_PACKAGE
+    mv $FOLDER_NAME/* .
+    rmdir $FOLDER_NAME
+    return 0
+}
+
+download_xmrig $LINUX_SYSTEM_CODE
+if [ $? -ne 0 ]; then
+    echo "Error: Downloading $XMRIG_PACKAGE failed."
+    echo "Provide the correct OS code for your system as an argument. For common linux distribution, use 'linux-static'"
+    exit 1
+fi
 
 echo "Downloading configs"
 for COIN in "${COINS[@]}"; do
   echo "Downloading config for $COIN"
   curl -L -O https://raw.githubusercontent.com/stormaaja/miningtools/refs/heads/main/xmrig/config_$COIN.json
+    if [ ! -f "config_$COIN.json" ]; then
+        echo "Error: Downloading config_$COIN.json failed."
+        exit 1
+    fi
 done
 
 echo "Updating configs with worker name: $WORKER_NAME"
@@ -38,16 +66,25 @@ echo "Setting default coin to ${COINS[0]}"
 echo ${COINS[0]} > coin.txt
 
 echo "Creating start script"
+MINER_DIR=$(pwd)
 cat >start.sh <<EOL
 #!/bin/bash
 
-COIN=$(cat coin.txt)
+if [ "$1" == "--help" ]; then
+  echo "You can check the status with: sudo systemctl status xmrig_miner.service"
+  echo "To view logs: journalctl -u xmrig_miner.service"
+  echo "To view logs in real-time: journalctl -u xmrig_miner.service -f"
+  echo "To change the coin, edit coin.txt and restart the service: sudo systemctl restart xmrig_miner.service"
+  exit 0
+fi
+
+COIN=$(cat $MINER_DIR/coin.txt)
 if [ -z "$COIN" ]; then
   echo "No coin specified. Please set the coin in coin.txt."
   exit 1
 fi
 
-xmrig --config config_$COIN.json
+$MINER_DIR/xmrig --config $MINER_DIR/config_\$COIN.json
 EOL
 chmod +x start.sh
 
@@ -75,8 +112,5 @@ sudo systemctl start xmrig_miner.service
 sudo systemctl status xmrig_miner.service
 
 echo "Xmrig miner service installed and started."
-echo "You can check the status with: sudo systemctl status xmrig_miner.service"
-echo "To view logs: journalctl -u xmrig_miner.service"
-echo "To view logs in real-time: journalctl -u xmrig_miner.service -f"
-echo "To change the coin, edit coin.txt and restart the service: sudo systemctl restart xmrig_miner.service"
+./start.sh --help
 
