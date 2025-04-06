@@ -15,5 +15,5 @@
             "tls": true
         }
     ],
-    "log-file": "{{LOG_FOLDER}}/xmrig/xmrig_vulkan.log"
+    "log-file": "{{LOG_FOLDER}}/xmrig_vulkan.log"
 }

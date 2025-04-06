@@ -14,5 +14,5 @@
             "algo": "randomx"
         }
     ],
-    "log-file": "{{LOG_FOLDER}}/xmrig/xmrig_dinasty.log"
+    "log-file": "{{LOG_FOLDER}}/xmrig_dinasty.log"
 }

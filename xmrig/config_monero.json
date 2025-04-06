@@ -23,5 +23,5 @@
             "submit-to-origin": false
         }
     ],
-    "log-file": "{{LOG_FOLDER}}/xmrig/xmrig_monero.log"
+    "log-file": "{{LOG_FOLDER}}/xmrig_monero.log"
 }
