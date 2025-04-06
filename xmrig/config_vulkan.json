@@ -14,5 +14,6 @@
             "algo": "randomx",
             "tls": true
         }
-    ]
+    ],
+    "log-file": "$HOME/xmrig/xmrig_vulkan.log"
 }

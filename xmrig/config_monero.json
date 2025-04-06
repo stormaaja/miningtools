@@ -22,5 +22,6 @@
             "self-select": null,
             "submit-to-origin": false
         }
-    ]
+    ],
+    "log-file": "$HOME/xmrig/xmrig_monero.log"
 }

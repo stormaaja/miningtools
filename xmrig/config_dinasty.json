@@ -13,5 +13,6 @@
             "variant": "trtl",
             "algo": "randomx"
         }
-    ]
+    ],
+    "log-file": "$HOME/xmrig/xmrig_dinasty.log"
 }

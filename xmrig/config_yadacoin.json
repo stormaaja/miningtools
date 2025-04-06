@@ -14,5 +14,6 @@
             "keepalive": true,
             "nicehash": false
         }
-    ]
+    ],
+    "log-file": "$HOME/xmrig/xmrig_yadacoin.log"
 }
