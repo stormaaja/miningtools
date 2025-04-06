@@ -58,10 +58,10 @@ MINER_DIR=$(pwd)
 
 echo "Updating configs with worker name: $WORKER_NAME"
 for config_file in config_*.json; do
-  if [ -f "$config_file" ]; then
+if [ -f "$config_file" ]; then
     echo "Updating $config_file with worker name: $WORKER_NAME"
-    sed -i "s/{{WORKER_NAME}}/$WORKER_NAME/g" "$config_file"
-    sed -i "s/{{LOG_FOLDER}}/$MINER_DIR/g" "$config_file"
+    sed -i "s|{{WORKER_NAME}}|$WORKER_NAME|g" "$config_file"
+    sed -i "s|{{LOG_FOLDER}}|$MINER_DIR|g" "$config_file"
   fi
 done
 
