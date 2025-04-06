@@ -82,7 +82,7 @@ if [ "\$1" == "--help" ]; then
 fi
 
 COIN=$(cat $MINER_DIR/coin.txt)
-if [ -z "$COIN" ]; then
+if [ -z "\$COIN" ]; then
   echo "No coin specified. Please set the coin in coin.txt."
   exit 1
 fi
