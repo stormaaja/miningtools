@@ -15,5 +15,5 @@
             "nicehash": false
         }
     ],
-    "log-file": "$HOME/xmrig/xmrig_yadacoin.log"
+    "log-file": "{{LOG_FOLDER}}/xmrig/xmrig_yadacoin.log"
 }
