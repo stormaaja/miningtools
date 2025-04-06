@@ -54,11 +54,14 @@ for COIN in "${COINS[@]}"; do
     fi
 done
 
+MINER_DIR=$(pwd)
+
 echo "Updating configs with worker name: $WORKER_NAME"
 for config_file in config_*.json; do
   if [ -f "$config_file" ]; then
     echo "Updating $config_file with worker name: $WORKER_NAME"
     sed -i "s/{{WORKER_NAME}}/$WORKER_NAME/g" "$config_file"
+    sed -i "s/{{LOG_FOLDER}}/$MINER_DIR/g" "$config_file"
   fi
 done
 
@@ -66,11 +69,11 @@ echo "Setting default coin to ${COINS[0]}"
 echo ${COINS[0]} > coin.txt
 
 echo "Creating start script"
-MINER_DIR=$(pwd)
+
 cat >start.sh <<EOL
 #!/bin/bash
 
-if [ "$1" == "--help" ]; then
+if [ "\$1" == "--help" ]; then
   echo "You can check the status with: sudo systemctl status xmrig_miner.service"
   echo "To view logs: journalctl -u xmrig_miner.service"
   echo "To view logs in real-time: journalctl -u xmrig_miner.service -f"
