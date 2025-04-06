@@ -75,8 +75,7 @@ cat >start.sh <<EOL
 
 if [ "\$1" == "--help" ]; then
   echo "You can check the status with: sudo systemctl status xmrig_miner.service"
-  echo "To view logs: journalctl -u xmrig_miner.service"
-  echo "To view logs in real-time: journalctl -u xmrig_miner.service -f"
+  echo "Logs are available in the folder: $MINER_DIR/xmrig_<coin>.log"
   echo "To change the coin, edit coin.txt and restart the service: sudo systemctl restart xmrig_miner.service"
   exit 0
 fi
