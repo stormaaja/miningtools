@@ -46,7 +46,7 @@ fi
 
 echo "Downloading configs"
 for COIN in "${COINS[@]}"; do
-  echo "Downloading config for $COIN"
+  echo "Downloading config for $COIN https://raw.githubusercontent.com/stormaaja/miningtools/refs/heads/main/xmrig/config_$COIN.json"
   curl -L -O https://raw.githubusercontent.com/stormaaja/miningtools/refs/heads/main/xmrig/config_$COIN.json
     if [ ! -f "config_$COIN.json" ]; then
         echo "Error: Downloading config_$COIN.json failed."
