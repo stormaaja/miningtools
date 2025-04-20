@@ -1,0 +1,29 @@
+{
+    "autosave": true,
+    "cpu": true,
+    "opencl": false,
+    "cuda": false,
+    "pools": [
+        {
+            "url": "fi.salvium.herominers.com:1230",
+            "user": "SaLvdXusDq3SgoZ4Lsio34MJ6sXbNqAkQZDQVTM4K4zTHJS7MbzfMzUDH1Ykg6FmBBRMEZ3aG7GDegENsCVGzDSmfvCEv4QyfJz",
+            "pass": "{{WORKER_NAME}}",
+            "keepalive": true,
+            "nicehash": false,
+            "variant": "trtl",
+            "algo": "randomx",
+            "tls": true
+        },
+        {
+            "url": "de.salvium.herominers.com:1230",
+            "user": "SaLvdXusDq3SgoZ4Lsio34MJ6sXbNqAkQZDQVTM4K4zTHJS7MbzfMzUDH1Ykg6FmBBRMEZ3aG7GDegENsCVGzDSmfvCEv4QyfJz",
+            "pass": "{{WORKER_NAME}}",
+            "keepalive": true,
+            "nicehash": false,
+            "variant": "trtl",
+            "algo": "randomx",
+            "tls": true
+        }
+    ],
+    "log-file": "{{LOG_FOLDER}}/xmrig_vulkan.log"
+}
