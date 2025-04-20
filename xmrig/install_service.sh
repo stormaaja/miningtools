@@ -1,12 +1,6 @@
 #!/bin/bash
 
 VERSION=6.22.2
-COINS=("vulkan" "dinasty"  "yadacoin" "monero")
-WORKER_NAME=$(hostname)
-
-if [ -n "$1" ]; then
-  WORKER_NAME=$1
-fi
 
 LINUX_SYSTEM_CODE=$(lsb_release -c | awk '{print $2}')
 if [ -n "$2" ]; then
@@ -44,26 +38,9 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "Downloading configs"
-for COIN in "${COINS[@]}"; do
-  echo "Downloading config for $COIN https://raw.githubusercontent.com/stormaaja/miningtools/refs/heads/main/xmrig/config_$COIN.json"
-  curl -L -O https://raw.githubusercontent.com/stormaaja/miningtools/refs/heads/main/xmrig/config_$COIN.json
-    if [ ! -f "config_$COIN.json" ]; then
-        echo "Error: Downloading config_$COIN.json failed."
-        exit 1
-    fi
-done
+curl -L https://raw.githubusercontent.com/stormaaja/miningtools/refs/heads/main/xmrig/update_configs.sh | bash
 
 MINER_DIR=$(pwd)
-
-echo "Updating configs with worker name: $WORKER_NAME"
-for config_file in config_*.json; do
-if [ -f "$config_file" ]; then
-    echo "Updating $config_file with worker name: $WORKER_NAME"
-    sed -i "s#{{WORKER_NAME}}#$WORKER_NAME#g" "$config_file"
-    sed -i "s#{{LOG_FOLDER}}#$MINER_DIR#g" "$config_file"
-  fi
-done
 
 echo "Setting default coin to ${COINS[0]}"
 echo ${COINS[0]} > coin.txt
@@ -80,7 +57,7 @@ if [ "\$1" == "--help" ]; then
   exit 0
 fi
 
-COIN=$(cat $MINER_DIR/coin.txt)
+COIN=\$(cat $MINER_DIR/coin.txt)
 if [ -z "\$COIN" ]; then
   echo "No coin specified. Please set the coin in coin.txt."
   exit 1
